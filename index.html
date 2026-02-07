@@ -48,6 +48,9 @@
       backdrop-filter: blur(10px);
       border-radius: 22px;
       text-align: center;
+      position: relative;
+      z-index: 10;
+
       box-shadow: 0 18px 60px rgba(0,0,0,.15);
     }
 
@@ -122,6 +125,26 @@
       margin: 0 auto;
       display: block;
     }
+
+      /* HEART-EYES RAIN 😍 */
+      .emoji-rain {
+        position: fixed;
+        top: -40px;
+        font-size: 32px;
+        pointer-events: none;
+        user-select: none;
+        animation-name: fall;
+        animation-timing-function: linear;
+        z-index: 1;
+      }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+        opacity: 0.9;
+      }
+    }
+
 
       /* SCREEN SHAKE CELEBRATION */
     .shake {
@@ -270,6 +293,23 @@
       }, 300);
     }
 
+     /* ---------- EMOJI RAIN 😍 ---------- */
+      
+      function spawnEmojiRain() {
+        const emoji = document.createElement("div");
+        emoji.className = "emoji-rain";
+        emoji.textContent = "😍";
+      
+        emoji.style.left = Math.random() * window.innerWidth + "px";
+        emoji.style.animationDuration = 3 + Math.random() * 3 + "s";
+        emoji.style.opacity = Math.random() * 0.4 + 0.6;
+      
+        document.body.appendChild(emoji);
+      
+        setTimeout(() => emoji.remove(), 7000);
+        }
+
+
     /* ---------- YES BUTTON GROWS ---------- */
     let yesScale = 1;
     function growYes() {
@@ -316,6 +356,10 @@
 
     noBtn.addEventListener("click", e => e.preventDefault());
 
+    // START 😍 RAIN IMMEDIATELY ON PAGE LOAD
+      setInterval(spawnEmojiRain, 180);
+
+
     /* ---------- YES CLICK ---------- */
     yesBtn.addEventListener("click", () => {
       zone.style.display = "none";
@@ -324,11 +368,13 @@
       resizeConfettiCanvas();
       fullScreenConfetti();
       shakeScreen();
-    });
+      });
+
 
   </script>
 </body>
 </html>
+
 
 
 
