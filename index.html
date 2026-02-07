@@ -8,14 +8,15 @@
   <!-- Confetti library -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
-  <style>
-    :root {
-      --bg1: #ffd6e7;
-      --bg2: #ffeef6;
-      --card: #ffffffcc;
-      --yes: #ff3b7a;
-      --yesHover: #ff1f68;
-    }
+    <style>
+      :root {
+    --bg1: #f3a6c5;
+    --bg2: #f8c1da;
+    --card: #ffffffdd;
+    --yes: #e11d63;
+    --yesHover: #c91855;
+  }
+  
 
     * { box-sizing: border-box; }
 
@@ -122,6 +123,26 @@
       display: block;
     }
 
+      /* SCREEN SHAKE CELEBRATION */
+    .shake {
+      animation: shake .6s ease-in-out;
+    }
+    
+    @keyframes shake {
+      0%   { transform: translate(0, 0) rotate(0deg); }
+      10%  { transform: translate(-6px, 3px) rotate(-1deg); }
+      20%  { transform: translate(7px, -4px) rotate(1deg); }
+      30%  { transform: translate(-7px, -3px) rotate(0deg); }
+      40%  { transform: translate(6px, 4px) rotate(1deg); }
+      50%  { transform: translate(-5px, 2px) rotate(-1deg); }
+      60%  { transform: translate(5px, -3px) rotate(0deg); }
+      70%  { transform: translate(-4px, 3px) rotate(1deg); }
+      80%  { transform: translate(4px, -2px) rotate(-1deg); }
+      90%  { transform: translate(-3px, 2px) rotate(0deg); }
+      100% { transform: translate(0, 0) rotate(0deg); }
+    }
+
+
     @keyframes pop {
       from { transform: scale(.96); opacity: 0; }
       to { transform: scale(1); opacity: 1; }
@@ -133,43 +154,42 @@
   <canvas id="confettiCanvas"></canvas>
 
   <main class="card">
-    <!-- ANIMAL WITH HEART -->
-    <svg class="art" viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="fur" x1="0" x2="1">
-          <stop offset="0" stop-color="#f7c7a1"/>
-          <stop offset="1" stop-color="#f2a97b"/>
-        </linearGradient>
-        <linearGradient id="heart" x1="0" x2="1">
-          <stop offset="0" stop-color="#ff4d7d"/>
-          <stop offset="1" stop-color="#ff1f68"/>
-        </linearGradient>
-      </defs>
+   <!-- PANDA WITH HEART -->
+  <svg class="art" viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg">
+    <!-- Heart -->
+    <path d="M200 40
+             C200 18 230 12 245 30
+             C260 12 290 18 290 40
+             C290 78 245 95 245 115
+             C245 95 200 78 200 40Z"
+          fill="#ff3b7a"/>
+  
+    <!-- Head -->
+    <circle cx="150" cy="135" r="70" fill="white" stroke="#111" stroke-width="3"/>
+  
+    <!-- Ears -->
+    <circle cx="85" cy="65" r="28" fill="black"/>
+    <circle cx="215" cy="65" r="28" fill="black"/>
+  
+    <!-- Eye patches -->
+    <ellipse cx="120" cy="130" rx="18" ry="25" fill="black"/>
+    <ellipse cx="180" cy="130" rx="18" ry="25" fill="black"/>
+  
+    <!-- Eyes -->
+    <circle cx="125" cy="135" r="6" fill="white"/>
+    <circle cx="185" cy="135" r="6" fill="white"/>
+  
+    <!-- Nose -->
+    <ellipse cx="150" cy="160" rx="10" ry="7" fill="black"/>
+  
+    <!-- Body -->
+    <ellipse cx="150" cy="220" rx="55" ry="35" fill="white" stroke="#111" stroke-width="3"/>
+  
+    <!-- Arms -->
+    <ellipse cx="100" cy="210" rx="22" ry="30" fill="black"/>
+    <ellipse cx="200" cy="210" rx="22" ry="30" fill="black"/>
+  </svg>
 
-      <path d="M250 50 C250 33 270 25 282 38
-               C294 25 314 33 314 50
-               C314 78 282 92 282 106
-               C282 92 250 78 250 50Z"
-            fill="url(#heart)"/>
-
-      <path d="M90 120 C90 70 140 40 190 60
-               C240 40 290 70 290 120
-               C290 180 240 210 190 210
-               C140 210 90 180 90 120Z"
-            fill="url(#fur)"/>
-
-      <path d="M110 92 L95 55 L140 78 Z" fill="#f2a97b"/>
-      <path d="M270 92 L285 55 L240 78 Z" fill="#f2a97b"/>
-
-      <circle cx="160" cy="130" r="8"/>
-      <circle cx="220" cy="130" r="8"/>
-
-      <path d="M190 144 C186 144 182 148 182 152
-               C182 160 190 164 190 170
-               C190 164 198 160 198 152
-               C198 148 194 144 190 144Z"
-            fill="#ff7aa2"/>
-    </svg>
 
     <h1>Pearlji will you be my valentine?</h1>
 
@@ -183,12 +203,12 @@
 
     <section class="result" id="result">
       <h2>YESSSSSSSSSSSSSSSS!!!!!!!!!!!! 🎉</h2>
-      <img
-        class="fireworks"
-        src="https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif"
-        src="https://giphy.com/gifs/solana-fuack-fuackcoin-Rik9n81Vda3rzr5F8h/giphy.gif"
-        alt="Fireworks"
+    <img
+      class="fireworks"
+      src="https://media.giphy.com/media/Rik9n81Vda3rzr5F8h/giphy.gif"
+      alt="Happy Panda"
       />
+
     </section>
   </main>
 
@@ -218,6 +238,12 @@
       resize: false,
       useWorker: true
     });
+
+    function shakeScreen() {
+     document.body.classList.add("shake");
+     setTimeout(() => document.body.classList.remove("shake"), 650);
+    }
+
 
     function fullScreenConfetti() {
       const end = Date.now() + 1600;
@@ -293,14 +319,17 @@
     /* ---------- YES CLICK ---------- */
     yesBtn.addEventListener("click", () => {
       zone.style.display = "none";
-      hint.style.display = "none";     // HIDE THE HINT
+      hint.style.display = "none";
       result.style.display = "block";
       resizeConfettiCanvas();
       fullScreenConfetti();
+      shakeScreen();
     });
+
   </script>
 </body>
 </html>
+
 
 
 
